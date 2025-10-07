@@ -7,7 +7,10 @@ var differenceOfSum = function(nums) {
     let digitSum = 0;
     for (let i of nums) {
         elementSum += i;
-        digitSum += parseInt(eval(i.toString().split('').join('+')));
+        let digit = String(i).split("");
+        for (let d of digit) {
+            digitSum += Number(d);
+        }
     }
     return elementSum - digitSum;
 
