@@ -12,6 +12,6 @@ var differenceOfSum = function(nums) {
             digitSum += Number(d);
         }
     }
-    return elementSum - digitSum;
+    return Math.abs(elementSum - digitSum);
 
 };
