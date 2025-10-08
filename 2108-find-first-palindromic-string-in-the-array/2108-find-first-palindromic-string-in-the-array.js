@@ -2,9 +2,11 @@
  * @param {string[]} words
  * @return {string}
  */
-var firstPalindrome = function(words) {
+var firstPalindrome = function (words) {
     for (let word of words) {
-       if (word == word.split('').reverse().join('')) return word;
+        let reversed = '';
+        for (let i = word.length - 1; i >= 0; i--) reversed += word[i]
+        if (word == reversed) return reversed;
     }
     return '';
 };
