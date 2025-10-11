@@ -3,15 +3,14 @@
  * @return {number}
  */
 var alternateDigitSum = function (n) {
-    let exp = ``;
+    let sum = 0;
     const digits = String(n).split('');
     for (let i = 0; i < digits.length; i++) {
         if (i == 0 || i % 2 == 0) {
-            exp += `(+${digits[i]})`
+            sum += Number(digits[i]);
         }
-        else exp += `(-${digits[i]})`
-        if (i < digits.length - 1) exp += `+`
+        else sum -= Number(digits[i])
     }
 
-    return eval(exp);
+    return sum;
 };
