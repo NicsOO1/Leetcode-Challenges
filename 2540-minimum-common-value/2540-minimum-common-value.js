@@ -4,23 +4,15 @@
  * @return {number}
  */
 var getCommon = function (nums1, nums2) {
-    const commonValue = [];
-    let isEmpty = true;
-
+    let commonValue = 0;
+    const sortedArr = nums2.sort((a, b) => a - b)
     const set = new Set([...nums1])
-    for (let i = 0; i < nums2.length; i++) {
-        if ((commonValue.length == 0) && set.has(nums2[i])) {
-            commonValue.push(nums2[i]);
-            isEmpty = false;
-        }
-        let prevValue = nums2[i - 1];
-        if (nums2[i] < prevValue) {
-            commonValue.pop();
-            commonValue.push(nums2[i]);
-            isEmpty = false;
-        }
-
+    for (let item of sortedArr) {
+    if (set.has(item))  commonValue = item
+        break;
     }
-    if(!isEmpty) return commonValue[0];
+
+    if(commonValue !== 0) return commonValue;
     else return -1;
+
 };
