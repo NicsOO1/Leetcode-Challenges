@@ -4,11 +4,23 @@
  * @return {number}
  */
 var getCommon = function (nums1, nums2) {
-    const commonValues = [];
+    const commonValue = [];
+    let isEmpty = true;
+
     const set = new Set([...nums1])
-    for (let item of nums2) {
-        if (set.has(item)) commonValues.push(item)
+    for (let i = 0; i < nums2.length; i++) {
+        if ((commonValue.length == 0) && set.has(nums2[i])) {
+            commonValue.push(nums2[i]);
+            isEmpty = false;
+        }
+        let prevValue = nums2[i - 1];
+        if (nums2[i] < prevValue) {
+            commonValue.pop();
+            commonValue.push(nums2[i]);
+            isEmpty = false;
+        }
+
     }
-    if (commonValues.length > 0) return Math.min(...commonValues)
+    if(!isEmpty) return commonValue[0];
     else return -1;
 };
