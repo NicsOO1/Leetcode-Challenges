@@ -3,26 +3,25 @@
  * @return {number[]}
  */
 var findMissingAndRepeatedValues = function (grid) {
-    const flatGrid = grid.flat().sort((a, b) => a - b);
-    let arr = [];
-    let repeatValue;
-    let missingValue;
+    const n = grid.length * grid.length;
+    let missing = -1;
+    let repeat = -1;
+    const seen = new Set();
 
-
-    for (let i = 0; i < flatGrid.length; i++) {
-        if (arr.includes(flatGrid[i])) {
-            repeatValue = flatGrid[i]
-        } else {
-            arr.push(flatGrid[i])
+    for (let row of grid) {
+        for (let num of row) {
+            if (seen.has(num)) repeat = num;
+            seen.add(num)
         }
     }
 
-    for (let i = 1; i <= flatGrid.length; i++) {
-        if (!(arr.includes(i))) {
-            missingValue = i;
-            arr = [repeatValue, missingValue]
+    for (let i = 1; i <= n; i++) {
+        if (!seen.has(i)) {
+            missing = i;
             break;
         }
+
     }
-    return arr;
+
+    return [repeat, missing]
 };
