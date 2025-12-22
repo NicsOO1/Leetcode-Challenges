@@ -3,14 +3,11 @@
  * @return {number}
  */
 var alternateDigitSum = function (n) {
+    const str = String(n);
     let sum = 0;
-    const digits = String(n).split('');
-    for (let i = 0; i < digits.length; i++) {
-        if (i == 0 || i % 2 == 0) {
-            sum += Number(digits[i]);
-        }
-        else sum -= Number(digits[i])
+    for (let i = 0; i < str.length; i++) {
+        if (i % 2 == 0) sum += Number(str[i]);
+        if (i % 2 == 1)sum -= Number(str[i]);
     }
-
     return sum;
 };
