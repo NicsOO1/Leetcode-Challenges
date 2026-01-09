@@ -2,13 +2,15 @@
  * @param {number[]} nums
  * @return {number}
  */
-var numIdenticalPairs = function(nums) {
-    let count = 0;
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = i + 1; j < nums.length;j++) {
-            if (nums[i] === nums[j]) count++;
+var numIdenticalPairs = function (nums) {
+    const freqMap = new Map();
+    const seen = [];
+    for (let n of nums) {
+        if (freqMap.has(n)) {
+            freqMap.set(n, freqMap.get(n) + 1);
+            seen.push(freqMap.get(n));
         }
+        else freqMap.set(n, 0)
     }
-
-    return count;
+    return seen.reduce((sum, n) => sum += n, 0)
 };
