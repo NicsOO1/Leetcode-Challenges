@@ -5,19 +5,9 @@
  * @return {Function}
  */
 var cancellable = function (fn, args, t) {
-    let count = 0;
-    if (count === 0) {
-        fn(...args);
-        count++;
-    }
-    
-    const interval = setInterval(() => {
-        fn(...args);
-    }, t)
-
-    const cancelFn = () => clearInterval(interval);
-
-    return cancelFn;
+    fn(...args);
+    const interval = setInterval(() => fn(...args), t);
+    return () => clearInterval(interval)
 };
 
 /**
